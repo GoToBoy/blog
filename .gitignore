@@ -4,6 +4,8 @@ resources
 .hugo_build.lock
 .DS_Store
 assets/jsconfig.json
+content/drafts/
+content/private/
 
 # Hugo output
 public/
