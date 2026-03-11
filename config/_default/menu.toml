@@ -12,6 +12,7 @@ name = "Archives"
 url = "/archives/"
 [main.params]
 icon = "archives"
+bottom = true
 
 [[main]]
 identifier = "about"
@@ -19,13 +20,7 @@ name = "About"
 url = "/about/"
 [main.params]
 icon = "user"
-
-[[main]]
-identifier = "search"
-name = "Search"
-url = "/search/"
-[main.params]
-icon = "search"
+bottom = true
 
 [[social]]
     identifier = "github"

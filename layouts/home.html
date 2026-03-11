@@ -1,0 +1,17 @@
+{{ define "main" }}
+    {{- $pages := partial "helper/pages.html" . -}}
+    {{- $cutoff := now.AddDate -1 0 0 -}}
+    {{- $recentPages := where $pages "Date" "ge" $cutoff -}}
+
+    <section class="article-list">
+        {{ range $recentPages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

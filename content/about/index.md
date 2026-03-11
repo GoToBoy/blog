@@ -2,7 +2,6 @@
 title: "About"
 slug: "about"
 description: "关于 Slinks 的简要介绍。"
-menu: main
 ---
 
 # Slinks

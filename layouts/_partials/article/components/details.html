@@ -1,7 +1,7 @@
 {{- $IsList := .IsList -}}
 {{- $Page := .Page -}}
 <div class="article-details">
-    {{ if $Page.Params.categories }}
+    {{ if and $IsList $Page.Params.categories }}
     <header class="article-category">
         {{ range ($Page.GetTerms "categories") }}
             {{ $color := partial "helper/color-from-str" .LinkTitle }}
