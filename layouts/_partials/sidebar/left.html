@@ -98,13 +98,80 @@
                 {{ end }}
 
                 {{ if .Site.Params.colorScheme.toggle }}
-                    <li id="dark-mode-toggle">
-                        {{ partial "helper/icon" "toggle-left" }}
-                        {{ partial "helper/icon" "toggle-right" }}
-                        <span>{{ T "darkMode" }}</span>
+                    <li>
+                        <button class="dark-mode-toggle" type="button" data-gb-color-toggle aria-label="{{ T `darkMode` }}">
+                            {{ partial "helper/icon" "toggle-left" }}
+                            {{ partial "helper/icon" "toggle-right" }}
+                            <span>{{ T "darkMode" }}</span>
+                        </button>
                     </li>
                 {{ end }}
             </ol>
         </li>
     </ol>
 </aside>
+
+{{ if .Site.Params.colorScheme.toggle }}
+    <button class="dark-mode-toggle dark-mode-toggle--floating" type="button" data-gb-color-toggle aria-label="{{ T `darkMode` }}">
+        {{ partial "helper/icon" "toggle-left" }}
+        {{ partial "helper/icon" "toggle-right" }}
+    </button>
+
+    <script>
+        (() => {
+            const colorSchemeKey = "StackColorScheme";
+            const toggles = Array.from(document.querySelectorAll("[data-gb-color-toggle]"));
+
+            if (toggles.length === 0 || window.__gbColorToggleInitialized) {
+                return;
+            }
+
+            window.__gbColorToggleInitialized = true;
+
+            const getResolvedScheme = () => {
+                const stored = localStorage.getItem(colorSchemeKey) || "auto";
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+                if (stored === "dark" || (stored === "auto" && prefersDark)) {
+                    return "dark";
+                }
+
+                return "light";
+            };
+
+            const applyScheme = (scheme) => {
+                document.documentElement.dataset.scheme = scheme;
+                toggles.forEach((toggle) => {
+                    const isDark = scheme === "dark";
+                    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+                    toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+                });
+            };
+
+            const toggleScheme = () => {
+                const nextScheme = getResolvedScheme() === "dark" ? "light" : "dark";
+                localStorage.setItem(colorSchemeKey, nextScheme);
+                applyScheme(nextScheme);
+            };
+
+            toggles.forEach((toggle) => {
+                toggle.addEventListener("click", toggleScheme);
+            });
+
+            const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+            const handleSystemChange = () => {
+                if ((localStorage.getItem(colorSchemeKey) || "auto") === "auto") {
+                    applyScheme(getResolvedScheme());
+                }
+            };
+
+            if (typeof mediaQuery.addEventListener === "function") {
+                mediaQuery.addEventListener("change", handleSystemChange);
+            } else if (typeof mediaQuery.addListener === "function") {
+                mediaQuery.addListener(handleSystemChange);
+            }
+
+            applyScheme(getResolvedScheme());
+        })();
+    </script>
+{{ end }}
