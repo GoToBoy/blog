@@ -1,0 +1,22 @@
+.obsidian/
+public
+resources
+.hugo_build.lock
+.DS_Store
+assets/jsconfig.json
+
+# Hugo output
+public/
+resources/_gen/
+
+# OS files
+.DS_Store
+
+# Editor temp files
+*.swp
+*.swo
+
+# Logs
+*.log
+
+.vscode/
