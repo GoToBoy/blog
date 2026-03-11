@@ -1,0 +1,75 @@
+{{ define "body-class" }}
+    {{ if eq .Layout "search" }}
+        template-search
+    {{ else }}
+        article-page
+        {{- $HasWidgetNotTOC := false -}}
+        {{- $TOCWidgetEnabled := false -}}
+        {{- range .Site.Params.widgets.page -}}
+            {{- if ne .type "toc" -}}
+                {{ $HasWidgetNotTOC = true -}}
+            {{- else -}}
+                {{ $TOCWidgetEnabled = true -}}
+            {{- end -}}
+        {{- end -}}
+
+        {{- $TOCManuallyDisabled := eq .Params.toc false -}}
+        {{- $TOCEnabled := and (not $TOCManuallyDisabled) $TOCWidgetEnabled -}}
+        {{- $hasTOC := ge (len .TableOfContents) 100 -}}
+        {{- .Scratch.Set "TOCEnabled" (and $TOCEnabled $hasTOC) -}}
+        {{- .Scratch.Set "hasWidget" (or $HasWidgetNotTOC (and $TOCEnabled $hasTOC)) -}}
+    {{ end }}
+{{ end }}
+
+{{ define "main" }}
+    {{ if eq .Layout "search" }}
+        <form action="{{ .RelPermalink }}" class="search-form"{{ with .OutputFormats.Get "json" -}} data-json="{{ .RelPermalink }}"{{- end }}>
+            <p>
+                <label>{{ T "search.title" }}</label>
+                <input name="keyword" placeholder="{{ T `search.placeholder` }}" />
+            </p>
+
+            <button title="{{ T `search.title` }}">
+                {{ partial "helper/icon" "search" }}
+            </button>
+        </form>
+
+        <div class="search-result hidden">
+            <h3 class="search-result--title section-title"></h3>
+            <div class="search-result--list article-list--compact"></div>
+        </div>
+
+        <script>
+            window.searchResultTitleTemplate = "{{ T `search.resultTitle` }}"
+        </script>
+
+        {{- $opts := dict "minify" hugo.IsProduction "JSXFactory" "createElement" -}}
+        {{- $searchScript := resources.Get "ts/search.tsx" | js.Build $opts -}}
+        <script type="text/javascript" src="{{ $searchScript.RelPermalink }}" defer></script>
+
+        {{ partialCached "footer/footer" . }}
+    {{ else }}
+        {{ partial "article/article.html" . }}
+
+        {{ if .Params.links }}
+            {{ partial "article/components/links" . }}
+        {{ end }}
+
+        {{ partial "article/components/related-content" . }}
+
+        {{ if not (eq .Params.comments false) }}
+            {{ partial "comments/include" . }}
+        {{ end }}
+
+        {{ partialCached "footer/footer" . }}
+
+        {{ partialCached "article/components/photoswipe" . }}
+        {{ partial "article/components/mermaid" . }}
+    {{ end }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ if and (ne .Layout "search") (.Scratch.Get "hasWidget") }}
+        {{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}
+    {{ end }}
+{{ end }}

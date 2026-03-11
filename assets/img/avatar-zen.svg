@@ -1,0 +1,50 @@
+<svg width="640" height="640" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="520" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E6DED1"/>
+      <stop offset="0.52" stop-color="#D8CDBD"/>
+      <stop offset="1" stop-color="#C6B7A1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(336 190) rotate(90) scale(150)">
+      <stop stop-color="#F6E6BE" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#F6E6BE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ridge1" x1="84" y1="422" x2="282" y2="278" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8C8177"/>
+      <stop offset="1" stop-color="#6E645B"/>
+    </linearGradient>
+    <linearGradient id="ridge2" x1="252" y1="468" x2="562" y2="282" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#796E64"/>
+      <stop offset="1" stop-color="#5C534C"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="320" y1="334" x2="320" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8EE" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#FFF8EE" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="182" y="72" width="308" height="308" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="640" rx="48" fill="url(#bg)"/>
+
+  <path d="M0 0H640V640H0V0Z" fill="url(#glow)"/>
+
+  <g filter="url(#blur)">
+    <circle cx="336" cy="226" r="66" fill="#F0D39C" fill-opacity="0.5"/>
+  </g>
+  <circle cx="336" cy="214" r="54" fill="#EFCF8E"/>
+  <circle cx="336" cy="214" r="43" fill="#CBB89F"/>
+
+  <path d="M320 126C382 126 434 168 447 226" stroke="#D7B17A" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+
+  <path d="M68 474C124 436 174 396 230 354C280 387 316 417 366 448C430 405 478 369 572 328V640H68V474Z" fill="url(#ridge2)"/>
+  <path d="M58 522C130 470 176 430 246 366C292 404 334 438 390 470C446 445 492 424 582 410V640H58V522Z" fill="url(#ridge1)"/>
+
+  <ellipse cx="322" cy="432" rx="220" ry="74" fill="url(#mist)"/>
+
+  <path d="M136 520C186 506 232 500 274 500C325 500 369 510 422 518C467 525 506 528 548 520" stroke="#B89568" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+  <path d="M174 548C224 538 260 534 306 534C350 534 392 542 450 550" stroke="#9F825D" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+
+  <circle cx="320" cy="320" r="247" stroke="#FFF8EE" stroke-opacity="0.18" stroke-width="1.5"/>
+</svg>

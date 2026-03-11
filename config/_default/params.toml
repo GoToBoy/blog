@@ -20,7 +20,7 @@ SortBy              = "default"
 [sidebar]
     emoji    = "◦"
     subtitle = "A quiet place for notes, code, and long-form thinking."
-    avatar   = "img/avatar.png"
+    avatar   = "img/avatar-zen.svg"
 
 [article]
     headingAnchor = false
