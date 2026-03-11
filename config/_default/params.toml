@@ -10,16 +10,16 @@ favicon        = "img/favicon.png"
 SortBy              = "default"
 
 [footer]
-    since      = 2020
-    customText = ""
+    since      = 2026
+    customText = "Writing in Obsidian. Publishing with Hugo."
 
 [dateFormat]
     published   = ":date_full"
     lastUpdated = ":date_full"
 
 [sidebar]
-    emoji    = "🍥"
-    subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    emoji    = "◦"
+    subtitle = "A quiet place for notes, code, and long-form thinking."
     avatar   = "img/avatar.png"
 
 [article]
@@ -47,10 +47,5 @@ SortBy              = "default"
     toggle  = true
     default = "auto"
 
-## Comments
 [comments]
-    enabled  = true
-    provider = "disqus"
-
-    # See all the available configurations at https://github.com/CaiJimmy/hugo-theme-stack/blob/master/config/_default/params.toml
-    # Copy the configurations you need from there and paste it here.
+    enabled  = false

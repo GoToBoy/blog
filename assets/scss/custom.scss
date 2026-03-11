@@ -1,3 +1,326 @@
-/*
-    You can add your own custom styles here.
-*/
+:root {
+    --gb-bg: #f5f1ea;
+    --gb-surface: rgba(255, 255, 255, 0.78);
+    --gb-surface-strong: #fffdf8;
+    --gb-border: rgba(53, 42, 34, 0.08);
+    --gb-text: #2d241f;
+    --gb-muted: #75675c;
+    --gb-accent: #a36f3d;
+    --gb-shadow: 0 18px 50px rgba(38, 24, 15, 0.08);
+    --gb-radius: 22px;
+}
+
+[data-scheme="dark"] {
+    --gb-bg: #171412;
+    --gb-surface: rgba(33, 29, 26, 0.88);
+    --gb-surface-strong: #211d1a;
+    --gb-border: rgba(255, 248, 240, 0.08);
+    --gb-text: #f2e9df;
+    --gb-muted: #b7a89b;
+    --gb-accent: #d8a266;
+    --gb-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+html {
+    background:
+        radial-gradient(circle at top left, rgba(163, 111, 61, 0.08), transparent 28%),
+        linear-gradient(180deg, var(--gb-bg), color-mix(in srgb, var(--gb-bg) 86%, #ffffff 14%));
+}
+
+body {
+    color: var(--gb-text);
+    font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    letter-spacing: 0.01em;
+    font-size: 17px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(163, 111, 61, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(163, 111, 61, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.32), transparent 72%);
+}
+
+h1, h2, h3, h4, h5, h6,
+.article-title,
+.site-name {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC", "Source Han Serif SC", serif;
+    letter-spacing: -0.02em;
+}
+
+.container {
+    max-width: 1240px;
+}
+
+.main-container {
+    gap: 2rem;
+}
+
+.left-sidebar,
+.right-sidebar,
+.main-article,
+.article-list article,
+.widget,
+.archives-group {
+    background: var(--gb-surface);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--gb-border);
+    border-radius: var(--gb-radius);
+    box-shadow: var(--gb-shadow);
+}
+
+.left-sidebar,
+.right-sidebar,
+.widget {
+    padding: 1.15rem;
+}
+
+.left-sidebar {
+    position: sticky;
+    top: 1.5rem;
+}
+
+.main-article,
+.article-list article,
+.archives-group {
+    background: var(--gb-surface-strong);
+}
+
+.article-list article {
+    padding: 1.6rem;
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.article-list article::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gb-accent), transparent 72%);
+    opacity: 0.85;
+}
+
+.article-list article:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--gb-accent) 28%, var(--gb-border));
+}
+
+.article-title {
+    font-size: clamp(1.5rem, calc(1.15rem + 1vw), 2.35rem);
+    line-height: 1.15;
+}
+
+.article-list .article-title {
+    font-size: clamp(1.5rem, calc(1.12rem + 0.82vw), 2rem);
+}
+
+.article-content {
+    font-size: 1.8rem;
+    line-height: 1.92;
+}
+
+.article-content p,
+.article-content li {
+    color: var(--gb-text);
+}
+
+.article-content h2,
+.article-content h3 {
+    margin-top: 2.2rem;
+    margin-bottom: 0.85rem;
+}
+
+.article-content h2 {
+    font-size: 2.8rem;
+}
+
+.article-content h3 {
+    font-size: 2.2rem;
+}
+
+.article-content blockquote {
+    margin: 1.6rem 0;
+    padding: 1rem 1.2rem;
+    border-left: 4px solid var(--gb-accent);
+    background: color-mix(in srgb, var(--gb-surface) 72%, transparent);
+    border-radius: 0 16px 16px 0;
+    color: var(--gb-muted);
+}
+
+.article-content code {
+    padding: 0.15rem 0.42rem;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--gb-surface) 70%, #000 2%);
+}
+
+.article-content pre {
+    border-radius: 18px;
+    border: 1px solid var(--gb-border);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.site-avatar img {
+    border-radius: 22px;
+    border: 1px solid var(--gb-border);
+    box-shadow: var(--gb-shadow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    padding: 0.35rem;
+}
+
+.site-name {
+    font-size: 1.78rem;
+}
+
+.site-description {
+    max-width: 24ch;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.left-sidebar .site-meta {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.left-sidebar .site-meta::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 2px;
+    background: var(--gb-accent);
+    opacity: 0.5;
+}
+
+.site-description,
+.article-subtitle,
+.widget-title,
+.article-meta,
+.menu .menu-bottom-section,
+.tagCloud a,
+.taxonomy-count,
+.archives-time {
+    color: var(--gb-muted);
+}
+
+.menu .menu-social a,
+.menu li a,
+.tagCloud a,
+.pagination .page-link,
+.article-category a,
+.article-tags a {
+    border-radius: 999px;
+}
+
+.menu li a,
+.pagination .page-link {
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.menu li.current a,
+.menu li a:hover,
+.pagination .page-link.current,
+.pagination .page-link:hover {
+    background: color-mix(in srgb, var(--gb-accent) 14%, transparent);
+    color: var(--gb-text);
+}
+
+.widget-title::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 2px;
+    margin-top: 0.55rem;
+    background: var(--gb-accent);
+    opacity: 0.55;
+}
+
+.article-category a,
+.article-tags a,
+.tagCloud a {
+    padding: 0.32rem 0.72rem;
+    border: 1px solid var(--gb-border);
+    background: color-mix(in srgb, var(--gb-surface) 82%, transparent);
+}
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+    align-items: center;
+    font-size: 0.98rem;
+}
+
+.article-meta .inline-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem 0.9rem;
+}
+
+.article-meta .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    white-space: nowrap;
+}
+
+.widget.archive .archive-year,
+.archives-year {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+.search-form.widget {
+    border-style: dashed;
+}
+
+.main-article,
+.article-list article,
+.widget,
+.archives-group {
+    animation: gb-fade-up 420ms ease both;
+}
+
+@keyframes gb-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        gap: 1rem;
+    }
+
+    .left-sidebar {
+        position: static;
+    }
+
+    .left-sidebar,
+    .right-sidebar,
+    .main-article,
+    .article-list article,
+    .widget,
+    .archives-group {
+        border-radius: 18px;
+    }
+
+    .article-list article,
+    .main-article {
+        padding: 1.2rem;
+    }
+}
