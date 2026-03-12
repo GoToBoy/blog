@@ -1,6 +1,6 @@
 ---
-title: "{{VALUE:title}}"
-slug: "{{VALUE:slug}}"
+title: "Week {{DATE:WW}}, {{DATE:GGGG}}"
+slug: "{{DATE:GGGG-[W]WW}}"
 date: {{DATE:YYYY-MM-DD}}
 draft: true
 tags: ["weekly"]

@@ -11,7 +11,7 @@ identifier = "weeks"
 name = "Weekly"
 url = "/weeks/"
 [main.params]
-icon = "calendar-week"
+icon = "date"
 
 [[main]]
 identifier = "archives"
