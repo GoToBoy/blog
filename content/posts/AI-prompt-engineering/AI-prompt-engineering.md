@@ -13,19 +13,7 @@ summary: |-
 
 [AI prompt engineering: A deep dive](https://www.youtube.com/watch?v=T9aRN5JkmL8)
 [prompt engineering doc](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
-#### rules:
-- **先把任务像交代给一个聪明新人那样讲清楚**
-- **不要迷信咒语和花招**
-- **认真读输出，比盯着 prompt 本身更重要**
-- **多测异常输入，不要只测理想 case**
-- **给模型不确定时的退出机制**
-- **模型答错了，直接问它为什么错**
-- **能给原始材料就给原始材料，别总想着手工 baby-sit**
-- **聊天 prompt 和系统 prompt 是两种东西**
-- **真正的提升来自做难任务、做边界任务**
-- **未来最重要的能力，可能不是“写神 prompt”，而是“把自己想要什么说清楚”**
 
-###  全文
 这里的核心不是“提示词有没有魔法”，而是：
 
 **Prompt engineering 本质上是在把你脑子里的任务，尽可能无歧义地外化给模型。**  
