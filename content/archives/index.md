@@ -1,4 +1,4 @@
 ---
 title: Archives
-layout: archives
+layout: archive-calendar
 ---

@@ -61,6 +61,17 @@ h1, h2, h3, h4, h5, h6,
     gap: 2rem;
 }
 
+main.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+footer.site-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+}
+
 .left-sidebar,
 .right-sidebar,
 .main-article,
@@ -401,6 +412,80 @@ h1, h2, h3, h4, h5, h6,
     font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC", "Source Han Serif SC", serif;
 }
 
+.archives-list-year {
+    padding: 1.65rem;
+}
+
+.archives-list-year__header {
+    margin-bottom: 1.25rem;
+}
+
+.archives-list-year__title {
+    margin: 0;
+    font-size: clamp(2.5rem, calc(1.8rem + 1.8vw), 3.6rem);
+    font-family: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+.archives-list-year__title a,
+.archives-list-month__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.archives-list-months {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.archives-list-month {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    padding-top: 0.2rem;
+}
+
+.archives-list-month__title {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--gb-muted);
+    position: sticky;
+    top: 1.5rem;
+}
+
+.archives-list-items {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.archives-list-item {
+    margin: 0;
+}
+
+.archives-list-item__link {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.2rem 0;
+}
+
+.archives-list-item__day {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gb-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.archives-list-item__title {
+    font-size: 1.22rem;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
 .search-form.widget {
     border-style: dashed;
 }
@@ -460,6 +545,20 @@ h1, h2, h3, h4, h5, h6,
 
     .article-list article {
         padding: 1.35rem;
+    }
+
+    .archives-list-year {
+        padding: 1.1rem;
+    }
+
+    .archives-list-month {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .archives-list-month__title {
+        position: static;
+        font-size: 1.3rem;
     }
 
     .article-title {

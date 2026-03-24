@@ -1,0 +1,37 @@
+{{ define "body-class" }}template-archives{{ end }}
+{{ define "main" }}
+    {{- $archiveTypes := slice "reading" "reflections" -}}
+    {{- $archivePages := where .Site.RegularPages "Type" "in" $archiveTypes -}}
+    {{- $archivePages = where $archivePages "Draft" "!=" true -}}
+    {{- $archivePages = partial "helper/pages-sort.html" (dict "Pages" $archivePages "Context" .) -}}
+
+    {{ range $archivePages.GroupByDate "2006" }}
+    {{ $yearID := lower (replace .Key " " "-") }}
+    <section class="archives-list-year archives-group" id="{{ $yearID }}">
+        <header class="archives-list-year__header">
+            <h2 class="archives-list-year__title"><a href="{{ $.RelPermalink }}#{{ $yearID }}">{{ .Key }}</a></h2>
+        </header>
+
+        <div class="archives-list-months">
+        {{ range .Pages.GroupByDate "2006-01" }}
+        {{ $monthID := lower (replace .Key " " "-") }}
+        <section class="archives-list-month" id="{{ $monthID }}">
+            <h3 class="archives-list-month__title"><a href="{{ $.RelPermalink }}#{{ $monthID }}">{{ dateFormat "01 月" (index .Pages 0).Date }}</a></h3>
+            <div class="archives-list-items">
+                {{ range .Pages }}
+                    <article class="archives-list-item">
+                        <a class="archives-list-item__link" href="{{ .RelPermalink }}">
+                            <time class="archives-list-item__day" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02" }}</time>
+                            <span class="archives-list-item__title">{{ .Title }}</span>
+                        </a>
+                    </article>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
