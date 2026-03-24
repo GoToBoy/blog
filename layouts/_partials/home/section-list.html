@@ -1,5 +1,6 @@
 {{- $pages := .pages | default (slice) -}}
 {{- $limit := .limit | default (len $pages) -}}
+{{- $emptyText := .emptyText | default "No posts to show yet." -}}
 
 <section class="home-section">
   <header class="home-section__header">
@@ -10,7 +11,7 @@
     {{ range first $limit $pages }}
       {{ partial "article-list/default" . }}
     {{ else }}
-      <p class="home-section__empty">{{ $.emptyText }}</p>
+      <p class="home-section__empty">{{ $emptyText }}</p>
     {{ end }}
   </div>
 </section>

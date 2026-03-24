@@ -1,5 +1,6 @@
 {{- $terms := .terms | default (slice) -}}
 {{- $limit := .limit | default (len $terms) -}}
+{{- $emptyText := .emptyText | default "No topics to show yet." -}}
 {{- $terms = first $limit $terms -}}
 
 <section class="home-section home-section--topics">
@@ -13,6 +14,8 @@
         <span class="topic-card__name">{{ .Page.Title }}</span>
         <span class="topic-card__count">{{ .Count }}</span>
       </a>
+    {{ else }}
+      <p class="home-section__empty">{{ $emptyText }}</p>
     {{ end }}
   </div>
 </section>
