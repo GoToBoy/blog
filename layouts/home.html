@@ -6,21 +6,9 @@
     {{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
     {{- $recentLimit := $homepage.recentLimit | default 6 -}}
     {{- $recentPages := first $recentLimit $pages -}}
-    {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}
-    {{- if eq (len $topicTerms) 0 -}}
-        {{- $topicTerms = .Site.Taxonomies.categories.ByCount | default (slice) -}}
-    {{- end -}}
-
-    {{ partial "home/topic-cards.html" (dict
-        "title" ($homepage.topicsTitle | default "主题浏览")
-        "terms" $topicTerms
-        "limit" ($homepage.topicsLimit | default 8)
-        "emptyText" ($homepage.topicsEmptyText | default "主题索引正在慢慢长出来。")
-    ) }}
 
     {{ partial "home/section-list.html" (dict
         "title" ($homepage.recentTitle | default "最近更新")
-        "intro" ($homepage.recentIntro | default "按时间排序，直接看最近写下的内容。")
         "pages" $recentPages
         "limit" $recentLimit
         "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")

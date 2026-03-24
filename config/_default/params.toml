@@ -22,13 +22,9 @@ SortBy              = "default"
     avatar   = "img/avatar-zen.svg"
 
 [homepage]
-    topicsTitle     = "主题浏览"
     recentTitle     = "最近更新"
-    topicsLimit     = 8
     recentLimit     = 6
-    topicsEmptyText = "主题索引正在慢慢长出来。"
     recentEmptyText = "最近还没有新的更新。"
-    recentIntro     = "按时间排序，直接看最近写下的内容。"
 
 [article]
     headingAnchor = false
@@ -43,7 +39,6 @@ SortBy              = "default"
     homepage = [
         { type = "search" },
         { type = "archives", params = { limit = 5 } },
-        { type = "categories", params = { limit = 10 } },
     ]
     page = [{ type = "toc" }]
 

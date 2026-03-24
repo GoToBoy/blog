@@ -15,5 +15,5 @@ hasCJKLanguage = true
     pagerSize = 5
 
 [taxonomies]
-  category = "categories"
+  category = ""
   tag = "tags"    
