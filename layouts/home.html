@@ -9,14 +9,8 @@
     {{- $recentLimit := $homepage.recentLimit | default 6 -}}
     {{- $readingPages := where $pages "Section" "posts" -}}
     {{- $reflectionPages := where $pages "Section" "notes" -}}
-    {{- $featuredPages := union (first $readingLimit $readingPages) (first $reflectionLimit $reflectionPages) -}}
-    {{- $featuredPaths := slice -}}
-    {{- range $featuredPages -}}
-        {{- $featuredPaths = $featuredPaths | append .RelPermalink -}}
-    {{- end -}}
     {{- $cutoff := now.AddDate -1 0 0 -}}
-    {{- $recentPages := where (where $pages "Date" "ge" $cutoff) "RelPermalink" "not in" $featuredPaths -}}
-    {{- $recentPages = first $recentLimit $recentPages -}}
+    {{- $recentPages := first $recentLimit (where $pages "Date" "ge" $cutoff) -}}
     {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}
     {{- if eq (len $topicTerms) 0 -}}
         {{- $topicTerms = .Site.Taxonomies.categories.ByCount | default (slice) -}}
