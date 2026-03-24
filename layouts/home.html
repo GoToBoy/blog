@@ -1,14 +1,14 @@
 {{ define "main" }}
     {{- $homepage := .Site.Params.homepage -}}
-    {{- $homeTypes := slice "posts" "notes" -}}
+    {{- $homeTypes := slice "reading" "reflections" -}}
     {{- $pages := where .Site.RegularPages "Type" "in" $homeTypes -}}
     {{- $pages = where $pages "Draft" "!=" true -}}
     {{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
     {{- $readingLimit := $homepage.readingLimit | default 4 -}}
     {{- $reflectionLimit := $homepage.reflectionLimit | default 4 -}}
     {{- $recentLimit := $homepage.recentLimit | default 6 -}}
-    {{- $readingPages := where $pages "Section" "posts" -}}
-    {{- $reflectionPages := where $pages "Section" "notes" -}}
+    {{- $readingPages := where $pages "Section" "reading" -}}
+    {{- $reflectionPages := where $pages "Section" "reflections" -}}
     {{- $cutoff := now.AddDate -1 0 0 -}}
     {{- $recentPages := first $recentLimit (where $pages "Date" "ge" $cutoff) -}}
     {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}

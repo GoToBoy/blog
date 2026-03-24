@@ -1,6 +1,7 @@
 ---
 title: 思考随笔
+url: /reflections/
 cascade:
   categories:
-    - notes
+    - reflections
 ---

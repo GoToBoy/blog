@@ -3,95 +3,61 @@
     {
       "id": "d9b20637-5a25-43c8-8b3a-6bf2368abd34",
       "name": "阅读摘记",
-      "type": "Capture",
+      "type": "Template",
       "command": false,
       "appendLink": false,
-      "captureTo": "content/posts/{{DATE:YYYY-MM-DD}}-{{RANDOM:6}}/index.md",
-      "captureToActiveFile": false,
-      "captureToCanvasNodeId": "",
-      "activeFileWritePosition": "cursor",
-      "createFileIfItDoesntExist": {
+      "templatePath": "_templates/reading.md",
+      "fileNameFormat": {
         "enabled": true,
-        "createWithTemplate": true,
-        "template": "_templates/post.md"
+        "format": "index"
       },
-      "format": {
-        "enabled": false,
-        "format": ""
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "content/reading/{{DATE:YYYY-MM-DD}}-{{RANDOM:6}}"
+        ],
+        "chooseWhenCreatingNote": false,
+        "chooseFromSubfolders": false,
+        "createInSameFolderAsActiveFile": false
       },
-      "insertAfter": {
-        "enabled": false,
-        "after": "",
-        "insertAtEnd": false,
-        "considerSubsections": false,
-        "createIfNotFound": false,
-        "createIfNotFoundLocation": "top",
-        "inline": false,
-        "replaceExisting": false,
-        "blankLineAfterMatchMode": "auto"
-      },
-      "newLineCapture": {
-        "enabled": false,
-        "direction": "below"
-      },
-      "prepend": false,
-      "task": false,
+      "setFileExistsBehavior": true,
+      "fileExistsMode": "Increment the file name",
       "openFile": true,
       "fileOpening": {
         "location": "tab",
         "direction": "vertical",
         "mode": "default",
         "focus": true
-      },
-      "templater": {
-        "afterCapture": "none"
       }
     },
     {
       "id": "a44c7bc5-5a89-4f48-8f18-1da6261a3c0b",
       "name": "思考随笔",
-      "type": "Capture",
+      "type": "Template",
       "command": false,
       "appendLink": false,
-      "captureTo": "content/notes/{{DATE:YYYY-MM-DD}}-{{RANDOM:6}}/index.md",
-      "captureToActiveFile": false,
-      "captureToCanvasNodeId": "",
-      "activeFileWritePosition": "cursor",
-      "createFileIfItDoesntExist": {
+      "templatePath": "_templates/reflection.md",
+      "fileNameFormat": {
         "enabled": true,
-        "createWithTemplate": true,
-        "template": "_templates/note.md"
+        "format": "index"
       },
-      "format": {
-        "enabled": false,
-        "format": ""
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "content/reflections/{{DATE:YYYY-MM-DD}}-{{RANDOM:6}}"
+        ],
+        "chooseWhenCreatingNote": false,
+        "chooseFromSubfolders": false,
+        "createInSameFolderAsActiveFile": false
       },
-      "insertAfter": {
-        "enabled": false,
-        "after": "",
-        "insertAtEnd": false,
-        "considerSubsections": false,
-        "createIfNotFound": false,
-        "createIfNotFoundLocation": "top",
-        "inline": false,
-        "replaceExisting": false,
-        "blankLineAfterMatchMode": "auto"
-      },
-      "newLineCapture": {
-        "enabled": false,
-        "direction": "below"
-      },
-      "prepend": false,
-      "task": false,
+      "setFileExistsBehavior": true,
+      "fileExistsMode": "Increment the file name",
       "openFile": true,
       "fileOpening": {
         "location": "tab",
         "direction": "vertical",
         "mode": "default",
         "focus": true
-      },
-      "templater": {
-        "afterCapture": "none"
       }
     }
   ],

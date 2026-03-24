@@ -1,5 +1,5 @@
 ---
-title: Deep
+title: Deep Dive into LLMS like ChatGPT
 date: 2026-03-11
 draft: false
 tags:

@@ -1,5 +1,5 @@
 # Permalinks format of each content section
-posts = "/posts/:slugorcontentbasename/"
-notes = "/notes/:slugorcontentbasename/"
+reading = "/reading/:slugorcontentbasename/"
+reflections = "/reflections/:slugorcontentbasename/"
 weeks = "/weeks/:slugorcontentbasename/"
 page = "/:slug/"
