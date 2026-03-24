@@ -1,9 +1,9 @@
 ---
-title: "Week {{DATE:WW}}, {{DATE:GGGG}}"
+title: "周记 {{DATE:WW}}, {{DATE:GGGG}}"
 date: {{DATE:YYYY-MM-DD}}
 draft: true
-tags: []
+tags: ["weekly"]
 summary: ""
 ---
 
-> Legacy weekly note. 保留历史兼容，不作为主入口。
+> 兼容旧周记，仅保留历史使用。

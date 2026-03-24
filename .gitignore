@@ -1,4 +1,11 @@
 .obsidian/
+!.obsidian/
+.obsidian/*
+!.obsidian/plugins/
+.obsidian/plugins/*
+!.obsidian/plugins/quickadd/
+.obsidian/plugins/quickadd/*
+!.obsidian/plugins/quickadd/data.json
 public
 resources
 .hugo_build.lock
