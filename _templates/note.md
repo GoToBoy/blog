@@ -1,16 +1,11 @@
 ---
 title: "{{VALUE:title}}"
-slug: "{{VALUE:slug}}"
 date: {{DATE:YYYY-MM-DD}}
 draft: true
-tags: ["note"]
+tags: []
 summary: ""
 ---
 
-## Summary
+# {{VALUE:title}}
 
-## Key Points
-
-- 
-
-## References
+> 写下此刻最重要的想法，先不用整理成结构。

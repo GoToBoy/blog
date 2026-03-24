@@ -1,28 +1,9 @@
 ---
 title: "Week {{DATE:WW}}, {{DATE:GGGG}}"
-slug: "{{DATE:GGGG-[W]WW}}"
 date: {{DATE:YYYY-MM-DD}}
 draft: true
-tags: ["weekly"]
+tags: []
 summary: ""
 ---
 
-## 本周总结
-
-## 做了什么
-
-- 
-
-## 学到了什么
-
-- 
-
-## 遇到的问题
-
-- 
-
-## 下周计划
-
-- 
-
-## 碎片记录
+> Legacy weekly note. 保留历史兼容，不作为主入口。
