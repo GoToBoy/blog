@@ -1,7 +1,5 @@
 {{ define "main" }}
-    {{- $homeSections := slice "posts" "notes" -}}
-    {{- $pages := where .Site.RegularPages "Section" "in" $homeSections -}}
-    {{- $pages = where $pages "Draft" "!=" true -}}
+    {{- $pages := partial "helper/pages.html" . -}}
     {{- $homepage := .Site.Params.homepage -}}
     {{- $readingPages := where $pages "Section" "posts" -}}
     {{- $reflectionPages := where $pages "Section" "notes" -}}

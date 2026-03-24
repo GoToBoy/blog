@@ -11,8 +11,9 @@
   <div class="topic-card-grid">
     {{ range $terms }}
       {{- $termPage := .Page -}}
+      {{- $termName := .Name | default ($termPage.LinkTitle | default $termPage.Title) -}}
       <a class="topic-card" href="{{ $termPage.RelPermalink }}">
-        <span class="topic-card__name">{{ $termPage.LinkTitle | default $termPage.Title }}</span>
+        <span class="topic-card__name">{{ $termName }}</span>
         <span class="topic-card__count">{{ .Count }}</span>
       </a>
     {{ else }}
