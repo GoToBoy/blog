@@ -22,6 +22,12 @@ SortBy              = "default"
     subtitle = "A quiet place for notes, code, and long-form thinking."
     avatar   = "img/avatar-zen.svg"
 
+[homepage]
+    readingTitle    = "阅读摘记"
+    reflectionTitle = "思考随笔"
+    topicsTitle     = "主题浏览"
+    recentTitle     = "最近更新"
+
 [article]
     headingAnchor = false
     math          = false

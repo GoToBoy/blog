@@ -1,5 +1,5 @@
 ---
-title: Weekly
+title: Weekly Archive
 cascade:
   categories:
     - weekly

@@ -8,10 +8,11 @@ icon = "home"
 
 [[main]]
 identifier = "weeks"
-name = "Weekly"
+name = "Weekly Archive"
 url = "/weeks/"
 [main.params]
 icon = "date"
+bottom = true
 
 [[main]]
 identifier = "archives"
