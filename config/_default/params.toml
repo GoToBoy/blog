@@ -27,6 +27,14 @@ SortBy              = "default"
     reflectionTitle = "思考随笔"
     topicsTitle     = "主题浏览"
     recentTitle     = "最近更新"
+    readingLimit    = 4
+    reflectionLimit = 4
+    topicsLimit     = 8
+    recentLimit     = 6
+    readingEmptyText = "阅读摘记还在整理中。"
+    reflectionEmptyText = "思考随笔还在整理中。"
+    topicsEmptyText = "主题索引正在慢慢长出来。"
+    recentEmptyText = "最近还没有新的更新。"
 
 [article]
     headingAnchor = false

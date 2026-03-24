@@ -10,8 +10,9 @@
   </header>
   <div class="topic-card-grid">
     {{ range $terms }}
-      <a class="topic-card" href="{{ .Page.RelPermalink }}">
-        <span class="topic-card__name">{{ .Page.Title }}</span>
+      {{- $termPage := .Page -}}
+      <a class="topic-card" href="{{ $termPage.RelPermalink }}">
+        <span class="topic-card__name">{{ $termPage.LinkTitle | default $termPage.Title }}</span>
         <span class="topic-card__count">{{ .Count }}</span>
       </a>
     {{ else }}

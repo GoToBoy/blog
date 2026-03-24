@@ -1,13 +1,41 @@
 {{ define "main" }}
-    {{- $pages := partial "helper/pages.html" . -}}
-    {{- $cutoff := now.AddDate -1 0 0 -}}
-    {{- $recentPages := where $pages "Date" "ge" $cutoff -}}
+    {{- $pages := where (partial "helper/pages.html" .) "Draft" "!=" true -}}
+    {{- $homepage := .Site.Params.homepage -}}
+    {{- $readingPages := where $pages "Section" "posts" -}}
+    {{- $reflectionPages := where $pages "Section" "notes" -}}
+    {{- $recentPages := first ($homepage.recentLimit | default 6) $pages -}}
+    {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}
+    {{- if eq (len $topicTerms) 0 -}}
+        {{- $topicTerms = .Site.Taxonomies.categories.ByCount | default (slice) -}}
+    {{- end -}}
 
-    <section class="article-list">
-        {{ range $recentPages }}
-            {{ partial "article-list/default" . }}
-        {{ end }}
-    </section>
+    {{ partial "home/section-list.html" (dict
+        "title" ($homepage.readingTitle | default "阅读摘记")
+        "pages" $readingPages
+        "limit" ($homepage.readingLimit | default 4)
+        "emptyText" ($homepage.readingEmptyText | default "阅读摘记还在整理中。")
+    ) }}
+
+    {{ partial "home/section-list.html" (dict
+        "title" ($homepage.reflectionTitle | default "思考随笔")
+        "pages" $reflectionPages
+        "limit" ($homepage.reflectionLimit | default 4)
+        "emptyText" ($homepage.reflectionEmptyText | default "思考随笔还在整理中。")
+    ) }}
+
+    {{ partial "home/topic-cards.html" (dict
+        "title" ($homepage.topicsTitle | default "主题浏览")
+        "terms" $topicTerms
+        "limit" ($homepage.topicsLimit | default 8)
+        "emptyText" ($homepage.topicsEmptyText | default "主题索引正在慢慢长出来。")
+    ) }}
+
+    {{ partial "home/section-list.html" (dict
+        "title" ($homepage.recentTitle | default "最近更新")
+        "pages" $recentPages
+        "limit" ($homepage.recentLimit | default 6)
+        "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")
+    ) }}
 
     {{- partial "footer/footer" . -}}
 {{ end }}
