@@ -1,4 +1,6 @@
 {{- $terms := .terms | default (slice) -}}
+{{- $limit := .limit | default (len $terms) -}}
+{{- $terms = first $limit $terms -}}
 
 <section class="home-section home-section--topics">
   <header class="home-section__header">
