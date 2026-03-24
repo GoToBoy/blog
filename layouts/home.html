@@ -1,9 +1,22 @@
 {{ define "main" }}
-    {{- $pages := partial "helper/pages.html" . -}}
     {{- $homepage := .Site.Params.homepage -}}
+    {{- $homeTypes := slice "posts" "notes" -}}
+    {{- $pages := where .Site.RegularPages "Type" "in" $homeTypes -}}
+    {{- $pages = where $pages "Draft" "!=" true -}}
+    {{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
+    {{- $readingLimit := $homepage.readingLimit | default 4 -}}
+    {{- $reflectionLimit := $homepage.reflectionLimit | default 4 -}}
+    {{- $recentLimit := $homepage.recentLimit | default 6 -}}
     {{- $readingPages := where $pages "Section" "posts" -}}
     {{- $reflectionPages := where $pages "Section" "notes" -}}
-    {{- $recentPages := first ($homepage.recentLimit | default 6) $pages -}}
+    {{- $featuredPages := union (first $readingLimit $readingPages) (first $reflectionLimit $reflectionPages) -}}
+    {{- $featuredPaths := slice -}}
+    {{- range $featuredPages -}}
+        {{- $featuredPaths = $featuredPaths | append .RelPermalink -}}
+    {{- end -}}
+    {{- $cutoff := now.AddDate -1 0 0 -}}
+    {{- $recentPages := where (where $pages "Date" "ge" $cutoff) "RelPermalink" "not in" $featuredPaths -}}
+    {{- $recentPages = first $recentLimit $recentPages -}}
     {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}
     {{- if eq (len $topicTerms) 0 -}}
         {{- $topicTerms = .Site.Taxonomies.categories.ByCount | default (slice) -}}
@@ -12,14 +25,14 @@
     {{ partial "home/section-list.html" (dict
         "title" ($homepage.readingTitle | default "阅读摘记")
         "pages" $readingPages
-        "limit" ($homepage.readingLimit | default 4)
+        "limit" $readingLimit
         "emptyText" ($homepage.readingEmptyText | default "阅读摘记还在整理中。")
     ) }}
 
     {{ partial "home/section-list.html" (dict
         "title" ($homepage.reflectionTitle | default "思考随笔")
         "pages" $reflectionPages
-        "limit" ($homepage.reflectionLimit | default 4)
+        "limit" $reflectionLimit
         "emptyText" ($homepage.reflectionEmptyText | default "思考随笔还在整理中。")
     ) }}
 
@@ -33,7 +46,7 @@
     {{ partial "home/section-list.html" (dict
         "title" ($homepage.recentTitle | default "最近更新")
         "pages" $recentPages
-        "limit" ($homepage.recentLimit | default 6)
+        "limit" $recentLimit
         "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")
     ) }}
 
