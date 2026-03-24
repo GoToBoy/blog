@@ -1,7 +1,7 @@
 ---
 title: "{{VALUE:entry_title|label:标题}}"
 date: {{DATE:YYYY-MM-DD}}
-draft: true
+draft: false
 tags: []
 summary: ""
 ---

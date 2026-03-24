@@ -7,12 +7,18 @@ url = "/"
 icon = "home"
 
 [[main]]
-identifier = "weeks"
-name = "Weekly Archive"
-url = "/weeks/"
+identifier = "reading"
+name = "阅读摘记"
+url = "/reading/"
 [main.params]
-icon = "date"
-bottom = true
+icon = "tag"
+
+[[main]]
+identifier = "reflections"
+name = "思考随笔"
+url = "/reflections/"
+[main.params]
+icon = "search"
 
 [[main]]
 identifier = "archives"
