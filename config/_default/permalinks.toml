@@ -1,5 +1,5 @@
 # Permalinks format of each content section
-posts = "/posts/:slug/"
-notes = "/notes/:slug/"
-weeks = "/weeks/:slug/"
+posts = "/posts/:sections[last]/"
+notes = "/notes/:sections[last]/"
+weeks = "/weeks/:sections[last]/"
 page = "/:slug/"
