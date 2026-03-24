@@ -6,6 +6,4 @@ tags: []
 summary: ""
 ---
 
-# {{VALUE:entry_title|label:标题}}
-
 先记下此刻的想法，不用急着整理。

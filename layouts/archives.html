@@ -1,23 +1,9 @@
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
-    {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
-    {{- $terms := $taxonomy.Pages -}}
-    {{ if $terms }}
-    <header>
-        <h2 class="section-title">{{ T "widget.categoriesCloud.title" }}</h2>
-        <div class="subsection-list">
-            <div class="article-list--tile">
-                {{ range $terms }}
-                    {{ partial "article-list/tile" . }}
-                {{ end }}
-            </div>
-        </div>
-    </header>
-    {{ end }}
-
-    {{- $pages := partial "helper/pages.html" .Site.Home -}}
-    {{- $cutoff := now.AddDate -1 0 0 -}}
-    {{- $archivePages := where $pages "Date" "lt" $cutoff -}}
+    {{- $archiveTypes := slice "reading" "reflections" -}}
+    {{- $archivePages := where .Site.RegularPages "Type" "in" $archiveTypes -}}
+    {{- $archivePages = where $archivePages "Draft" "!=" true -}}
+    {{- $archivePages = partial "helper/pages-sort.html" (dict "Pages" $archivePages "Context" .) -}}
 
     {{ range $archivePages.GroupByDate "2006" }}
     {{ $id := lower (replace .Key " " "-") }}
