@@ -4,10 +4,12 @@
 {{- $pages = first $limit $pages -}}
 
 <section class="home-section">
+  {{- if .title }}
   <header class="home-section__header">
     <h2>{{ .title }}</h2>
     {{ with .intro }}<p>{{ . }}</p>{{ end }}
   </header>
+  {{- end }}
   <div class="article-list">
     {{ range $pages }}
       {{ partial "article-list/default" . }}

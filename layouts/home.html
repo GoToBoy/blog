@@ -8,7 +8,7 @@
     {{- $recentPages := first $recentLimit $pages -}}
 
     {{ partial "home/section-list.html" (dict
-        "title" ($homepage.recentTitle | default "最近更新")
+        "title" ""
         "pages" $recentPages
         "limit" $recentLimit
         "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")

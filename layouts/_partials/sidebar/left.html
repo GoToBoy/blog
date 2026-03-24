@@ -62,7 +62,7 @@
                     {{ partial "helper/icon" . }}
                 {{ end }}
                 <span
-                    data-menu-label
+                    data-localized-label
                     data-label-en="{{ .Params.label_en | default .Name }}"
                     data-label-zh="{{ .Params.label_zh | default .Name }}"
                 >{{- .Name -}}</span>
@@ -79,7 +79,7 @@
                             {{ partial "helper/icon" . }}
                         {{ end }}
                         <span
-                            data-menu-label
+                            data-localized-label
                             data-label-en="{{ .Params.label_en | default .Name }}"
                             data-label-zh="{{ .Params.label_zh | default .Name }}"
                         >{{- .Name -}}</span>
@@ -121,17 +121,17 @@
 
 <script>
     (() => {
-        if (window.__gbMenuLanguageInitialized) {
+        if (window.__gbLocalizedLabelInitialized) {
             return;
         }
 
-        window.__gbMenuLanguageInitialized = true;
+        window.__gbLocalizedLabelInitialized = true;
 
         const languages = navigator.languages || [navigator.language || "en"];
         const prefersChinese = languages.some((lang) => /^zh\b/i.test(lang));
         const targetKey = prefersChinese ? "labelZh" : "labelEn";
 
-        document.querySelectorAll("[data-menu-label]").forEach((node) => {
+        document.querySelectorAll("[data-localized-label]").forEach((node) => {
             const nextText = node.dataset[targetKey];
             if (nextText) {
                 node.textContent = nextText;
@@ -168,39 +168,24 @@
                 return "light";
             };
 
-            const applyScheme = (scheme) => {
-                document.documentElement.dataset.scheme = scheme;
+            const syncPressedState = () => {
+                const isDark = getResolvedScheme() === "dark";
                 toggles.forEach((toggle) => {
-                    const isDark = scheme === "dark";
-                    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
-                    toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+                    toggle.setAttribute("aria-pressed", String(isDark));
                 });
             };
 
-            const toggleScheme = () => {
-                const nextScheme = getResolvedScheme() === "dark" ? "light" : "dark";
-                localStorage.setItem(colorSchemeKey, nextScheme);
-                applyScheme(nextScheme);
-            };
-
             toggles.forEach((toggle) => {
-                toggle.addEventListener("click", toggleScheme);
+                toggle.addEventListener("click", () => {
+                    const stored = localStorage.getItem(colorSchemeKey) || "auto";
+                    const next = stored === "dark" ? "light" : "dark";
+                    localStorage.setItem(colorSchemeKey, next);
+                    document.documentElement.dataset.scheme = next;
+                    syncPressedState();
+                });
             });
 
-            const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-            const handleSystemChange = () => {
-                if ((localStorage.getItem(colorSchemeKey) || "auto") === "auto") {
-                    applyScheme(getResolvedScheme());
-                }
-            };
-
-            if (typeof mediaQuery.addEventListener === "function") {
-                mediaQuery.addEventListener("change", handleSystemChange);
-            } else if (typeof mediaQuery.addListener === "function") {
-                mediaQuery.addListener(handleSystemChange);
-            }
-
-            applyScheme(getResolvedScheme());
+            syncPressedState();
         })();
     </script>
 {{ end }}

@@ -1,0 +1,79 @@
+{{ define "main" }}
+    <header class="section-header-simple">
+        <div class="section-header-simple__meta">
+            <p
+                class="section-header-simple__eyebrow"
+                data-localized-label
+                data-label-en="{{ if eq .Parent (.GetPage "/") }}Section{{ else }}{{ .Parent.Params.title_en | default .Parent.Title }}{{ end }}"
+                data-label-zh="{{ if eq .Parent (.GetPage "/") }}栏目{{ else }}{{ .Parent.Params.title_zh | default .Parent.Title }}{{ end }}"
+            >{{ if eq .Parent (.GetPage "/") }}Section{{ else }}{{ .Parent.Params.title_en | default .Parent.Title }}{{ end }}</p>
+
+            <h1
+                class="section-header-simple__title"
+                data-localized-label
+                data-label-en="{{ .Params.title_en | default .Title }}"
+                data-label-zh="{{ .Params.title_zh | default .Title }}"
+            >{{ .Params.title_en | default .Title }}</h1>
+
+            <p class="section-header-simple__count">
+                <span class="section-header-simple__count-number">{{ len .Pages }}</span>
+                <span
+                    data-localized-label
+                    data-label-en="{{ if eq (len .Pages) 1 }}entry{{ else }}entries{{ end }}"
+                    data-label-zh="篇"
+                >{{ if eq (len .Pages) 1 }}entry{{ else }}entries{{ end }}</span>
+            </p>
+
+            {{ with .Params.description }}
+                <p
+                    class="section-header-simple__description"
+                    data-localized-label
+                    data-label-en="{{ $.Params.description_en | default . }}"
+                    data-label-zh="{{ $.Params.description_zh | default . }}"
+                >{{ $.Params.description_en | default . }}</p>
+            {{ end }}
+        </div>
+    </header>
+
+    {{- $pages := partial "helper/pages.html" . -}}
+    {{- $subsections := .Sections -}}
+
+    {{- if and (eq (len $pages) (len $subsections)) (eq $pages $subsections) -}}
+        {{- $subsections = slice -}}
+    {{- end -}}
+
+    {{- with $subsections -}}
+        <aside>
+            <h2
+                class="section-header-simple__subheading"
+                data-localized-label
+                data-label-en="Subsections"
+                data-label-zh="子栏目"
+            >Subsections</h2>
+            <div class="subsection-list">
+                <div class="article-list--tile">
+                    {{ range . }}
+                        {{ partial "article-list/tile" . }}
+                    {{ end }}
+                </div>
+            </div>
+        </aside>
+    {{- end -}}
+
+    {{ $paginator := partial "helper/paginator.html" . }}
+    {{ with $paginator }}
+        <section class="article-list--compact">
+            {{ range .Pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </section>
+    {{ end }}
+
+    {{- partial "pagination.html" . -}}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}
