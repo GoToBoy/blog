@@ -1,0 +1,11 @@
+<footer class="site-footer">
+    <section class="copyright">
+        &copy;
+        {{ with .Site.Params.footer.since }}
+            {{ . }}
+        {{ else }}
+            {{ now.Year }}
+        {{ end }}
+        {{ .Site.Title }}
+    </section>
+</footer>

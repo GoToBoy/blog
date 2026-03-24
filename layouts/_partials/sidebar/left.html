@@ -61,7 +61,11 @@
                 {{ with .Params.Icon }}
                     {{ partial "helper/icon" . }}
                 {{ end }}
-                <span>{{- .Name -}}</span>
+                <span
+                    data-menu-label
+                    data-label-en="{{ .Params.label_en | default .Name }}"
+                    data-label-zh="{{ .Params.label_zh | default .Name }}"
+                >{{- .Name -}}</span>
             </a>
         </li>
         {{ end }}
@@ -74,7 +78,11 @@
                         {{ with .Params.Icon }}
                             {{ partial "helper/icon" . }}
                         {{ end }}
-                        <span>{{- .Name -}}</span>
+                        <span
+                            data-menu-label
+                            data-label-en="{{ .Params.label_en | default .Name }}"
+                            data-label-zh="{{ .Params.label_zh | default .Name }}"
+                        >{{- .Name -}}</span>
                     </a>
                 </li>
                 {{ end }}
@@ -110,6 +118,27 @@
         </li>
     </ol>
 </aside>
+
+<script>
+    (() => {
+        if (window.__gbMenuLanguageInitialized) {
+            return;
+        }
+
+        window.__gbMenuLanguageInitialized = true;
+
+        const languages = navigator.languages || [navigator.language || "en"];
+        const prefersChinese = languages.some((lang) => /^zh\b/i.test(lang));
+        const targetKey = prefersChinese ? "labelZh" : "labelEn";
+
+        document.querySelectorAll("[data-menu-label]").forEach((node) => {
+            const nextText = node.dataset[targetKey];
+            if (nextText) {
+                node.textContent = nextText;
+            }
+        });
+    })();
+</script>
 
 {{ if .Site.Params.colorScheme.toggle }}
     <button class="dark-mode-toggle dark-mode-toggle--floating" type="button" data-gb-color-toggle aria-label="{{ T `darkMode` }}">

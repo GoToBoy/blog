@@ -5,20 +5,26 @@ name = "Home"
 url = "/"
 [main.params]
 icon = "home"
+label_en = "Home"
+label_zh = "首页"
 
 [[main]]
 identifier = "reading"
-name = "阅读摘记"
+name = "Reading"
 url = "/reading/"
 [main.params]
 icon = "tag"
+label_en = "Reading"
+label_zh = "阅读摘记"
 
 [[main]]
 identifier = "reflections"
-name = "思考随笔"
+name = "Reflections"
 url = "/reflections/"
 [main.params]
 icon = "search"
+label_en = "Reflections"
+label_zh = "思考随笔"
 
 [[main]]
 identifier = "archives"
@@ -27,6 +33,8 @@ url = "/archives/"
 [main.params]
 icon = "archives"
 bottom = true
+label_en = "Archives"
+label_zh = "归档"
 
 [[main]]
 identifier = "about"
@@ -35,6 +43,8 @@ url = "/about/"
 [main.params]
 icon = "user"
 bottom = true
+label_en = "About"
+label_zh = "关于"
 
 [[social]]
     identifier = "github"

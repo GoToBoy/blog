@@ -4,31 +4,12 @@
     {{- $pages := where .Site.RegularPages "Type" "in" $homeTypes -}}
     {{- $pages = where $pages "Draft" "!=" true -}}
     {{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
-    {{- $readingLimit := $homepage.readingLimit | default 4 -}}
-    {{- $reflectionLimit := $homepage.reflectionLimit | default 4 -}}
     {{- $recentLimit := $homepage.recentLimit | default 6 -}}
-    {{- $readingPages := where $pages "Section" "reading" -}}
-    {{- $reflectionPages := where $pages "Section" "reflections" -}}
-    {{- $cutoff := now.AddDate -1 0 0 -}}
-    {{- $recentPages := first $recentLimit (where $pages "Date" "ge" $cutoff) -}}
+    {{- $recentPages := first $recentLimit $pages -}}
     {{- $topicTerms := .Site.Taxonomies.tags.ByCount | default (slice) -}}
     {{- if eq (len $topicTerms) 0 -}}
         {{- $topicTerms = .Site.Taxonomies.categories.ByCount | default (slice) -}}
     {{- end -}}
-
-    {{ partial "home/section-list.html" (dict
-        "title" ($homepage.readingTitle | default "阅读摘记")
-        "pages" $readingPages
-        "limit" $readingLimit
-        "emptyText" ($homepage.readingEmptyText | default "阅读摘记还在整理中。")
-    ) }}
-
-    {{ partial "home/section-list.html" (dict
-        "title" ($homepage.reflectionTitle | default "思考随笔")
-        "pages" $reflectionPages
-        "limit" $reflectionLimit
-        "emptyText" ($homepage.reflectionEmptyText | default "思考随笔还在整理中。")
-    ) }}
 
     {{ partial "home/topic-cards.html" (dict
         "title" ($homepage.topicsTitle | default "主题浏览")
@@ -39,6 +20,7 @@
 
     {{ partial "home/section-list.html" (dict
         "title" ($homepage.recentTitle | default "最近更新")
+        "intro" ($homepage.recentIntro | default "按时间排序，直接看最近写下的内容。")
         "pages" $recentPages
         "limit" $recentLimit
         "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")
