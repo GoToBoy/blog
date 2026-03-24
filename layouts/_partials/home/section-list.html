@@ -1,0 +1,16 @@
+{{- $pages := .pages | default (slice) -}}
+{{- $limit := .limit | default (len $pages) -}}
+
+<section class="home-section">
+  <header class="home-section__header">
+    <h2>{{ .title }}</h2>
+    {{ with .intro }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <div class="article-list">
+    {{ range first $limit $pages }}
+      {{ partial "article-list/default" . }}
+    {{ else }}
+      <p class="home-section__empty">{{ $.emptyText }}</p>
+    {{ end }}
+  </div>
+</section>

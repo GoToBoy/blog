@@ -1,0 +1,16 @@
+{{- $terms := .terms | default (slice) -}}
+
+<section class="home-section home-section--topics">
+  <header class="home-section__header">
+    <h2>{{ .title }}</h2>
+    {{ with .intro }}<p>{{ . }}</p>{{ end }}
+  </header>
+  <div class="topic-card-grid">
+    {{ range $terms }}
+      <a class="topic-card" href="{{ .Page.RelPermalink }}">
+        <span class="topic-card__name">{{ .Page.Title }}</span>
+        <span class="topic-card__count">{{ .Count }}</span>
+      </a>
+    {{ end }}
+  </div>
+</section>
