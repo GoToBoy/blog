@@ -127,9 +127,9 @@ NeoCognition 的核心不是做一个“又一个通用 Agent”，而是研究 
 - 一个软件；
 - 一个工作流；
 - 一个行业场景；
-- 一套隐性规则和人际协作模型。
-
-Agent 要真正有价值，不能只会泛泛完成 60%-70%，而是要通过 continual learning 建立某个 micro-world 的 world model，变得可靠、快速、低成本。
+- 一套隐性规则和人际协作模型
+- 
+==Agent 要真正有价值，不能只会泛泛完成 60%-70%，而是要通过 continual learning 建立某个 micro-world 的 world model，变得可靠、快速、低成本。==
 
 他认为下一阶段最大的 learning signal 来自真实 deployment，因为 Agent 的 research 和 production 会越来越不可分离：不部署到真实环境，就拿不到足够有效的持续学习信号。
 
@@ -164,15 +164,14 @@ Agent 要真正有价值，不能只会泛泛完成 60%-70%，而是要通过 co
 
 他的判断是：之前大家 bet 的方向还比较分散，但现在正在高度趋同。
 
-Anthropic 在 coding / productivity agent 上打了样，很多公司都在跟。OpenAI 也在往 Agent、productivity、coding 方向收束。Google 有强模型和强生态，但他觉得 Google 的 adoption 声势似乎还差一点，可能有更深层组织问题没看清。整体趋势是：**大厂都会做通用入口、生产力工具和平台级 Agent，但真正垂直、专业、深场景的 expert agent 仍然留给创业公司和行业玩家。**
+Anthropic 在 coding / productivity agent 上打了样，很多公司都在跟。OpenAI 也在往 Agent、productivity、coding 方向收束。Google 有强模型和强生态，但他觉得 Google 的 adoption 声势似乎还差一点，可能有更深层组织问题没看清。整体趋势是：==**大厂都会做通用入口、生产力工具和平台级 Agent，但真正垂直、专业、深场景的 expert agent 仍然留给创业公司和行业玩家。**==
 
 ---
 
-
-
-
 ## 技术支持
 [Chrome Extension: CastSaver for Xiaoyuzhou](https://chromewebstore.google.com/detail/castsaver-for-xiaoyuzhou/nkdidhjgknghmmakckchbohafnbacpin)
+
 [妙计飞书](https://www.feishu.cn/product/minutes)
+
 [openai chatgpt](https://chatgpt.com/)
 
