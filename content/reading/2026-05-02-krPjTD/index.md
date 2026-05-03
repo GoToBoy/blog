@@ -11,7 +11,7 @@ source: https://www.xiaoyuzhoufm.com/episode/69f3857a5c60a99573fea0c2
 
 <audio controls src="https://media.xyzcdn.net/626b46ea9cbbf0451cf5a962/luffrgudEiiGHQxam49tfQci63NO.m4a"></audio>
 ## Transcript
-![](139.%20【Agent的综述】和苏煜聊Agent技术史、OpenClaw%20Moment、边界的消弭和社会的辐射-69f3857a5c60a99573fea0c2%202.txt)
+![](transcript.txt)
 
 
 ## Summary
@@ -174,4 +174,3 @@ Anthropic 在 coding / productivity agent 上打了样，很多公司都在跟�
 [妙计飞书](https://www.feishu.cn/product/minutes)
 
 [openai chatgpt](https://chatgpt.com/)
-
