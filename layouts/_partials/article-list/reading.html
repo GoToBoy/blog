@@ -1,0 +1,37 @@
+{{- $sourceUrl := .Params.source -}}
+{{- $sourceDomain := "" -}}
+{{- with $sourceUrl -}}
+    {{- $u := urls.Parse . -}}
+    {{- $sourceDomain = strings.TrimPrefix "www." $u.Host -}}
+{{- end -}}
+
+{{- $body := .Params.summary -}}
+{{- if not $body -}}
+    {{- $body = .Summary -}}
+{{- end -}}
+
+<article class="article-card article-card--reading">
+    <div class="article-card__top-bar" aria-hidden="true"></div>
+    <div class="article-card__eyebrow">
+        <span class="article-card__eyebrow-icon" aria-hidden="true">📖</span>
+        {{ if $sourceDomain }}
+            <span>{{ $sourceDomain }}</span>
+        {{ else }}
+            <span data-localized-label data-label-en="Reading" data-label-zh="阅读摘记">阅读摘记</span>
+        {{ end }}
+    </div>
+    <h3 class="article-card__title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+    {{ with $body }}
+        <p class="article-card__body">{{ . | plainify }}</p>
+    {{ end }}
+    <div class="article-card__meta">
+        <time class="article-card__meta-item" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2006-01-02" }}
+        </time>
+        {{ if and .Site.Params.article.readingTime .ReadingTime }}
+            <span class="article-card__meta-item">{{ .ReadingTime }} min</span>
+        {{ end }}
+    </div>
+</article>

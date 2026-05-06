@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: xfgpm-2k97m
+created: 2026-05-04T03:36:47-07:00

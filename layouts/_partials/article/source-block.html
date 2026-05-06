@@ -1,0 +1,13 @@
+{{- with .Params.source -}}
+    {{- $u := urls.Parse . -}}
+    {{- $domain := strings.TrimPrefix "www." $u.Host -}}
+    <div class="source-block">
+        <span class="source-block__icon" aria-hidden="true">
+            {{ partial "helper/icon" "link" }}
+        </span>
+        <div class="source-block__body">
+            <div class="source-block__label" data-localized-label data-label-en="Source · {{ $domain }}" data-label-zh="来源 · {{ $domain }}">来源 · {{ $domain }}</div>
+            <a class="source-block__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a>
+        </div>
+    </div>
+{{- end -}}

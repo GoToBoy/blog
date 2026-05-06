@@ -27,6 +27,15 @@ label_en = "Reflections"
 label_zh = "思考随笔"
 
 [[main]]
+identifier = "weeks"
+name = "Weeks"
+url = "/weeks/"
+[main.params]
+icon = "date"
+label_en = "Weeks"
+label_zh = "周记"
+
+[[main]]
 identifier = "archives"
 name = "Archives"
 url = "/archives/"

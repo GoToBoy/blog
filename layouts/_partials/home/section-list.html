@@ -1,20 +1,40 @@
+{{- $variant := .variant | default "reflection" -}}
 {{- $pages := .pages | default (slice) -}}
-{{- $limit := .limit | default (len $pages) -}}
-{{- $emptyText := .emptyText | default "No posts to show yet." -}}
-{{- $pages = first $limit $pages -}}
+{{- $emptyText := .emptyText | default "No posts yet." -}}
+{{- $icon := .icon -}}
+{{- $title := .title -}}
+{{- $titleEn := .titleEn | default $title -}}
+{{- $viewAllUrl := .viewAllUrl -}}
+{{- $viewAllText := .viewAllText | default "查看全部" -}}
+{{- $viewAllTextEn := .viewAllTextEn | default "View all" -}}
 
-<section class="home-section">
-  {{- if .title }}
-  <header class="home-section__header">
-    <h2>{{ .title }}</h2>
-    {{ with .intro }}<p>{{ . }}</p>{{ end }}
-  </header>
-  {{- end }}
-  <div class="article-list">
-    {{ range $pages }}
-      {{ partial "article-list/default" . }}
-    {{ else }}
-      <p class="home-section__empty">{{ $emptyText }}</p>
-    {{ end }}
-  </div>
+<section class="home-section home-section--{{ $variant }}">
+    <header class="home-section__header">
+        <div class="home-section__title-group">
+            {{ with $icon }}<span class="home-section__icon" aria-hidden="true">{{ . }}</span>{{ end }}
+            <h2
+                class="home-section__title"
+                data-localized-label
+                data-label-en="{{ $titleEn }}"
+                data-label-zh="{{ $title }}"
+            >{{ $title }}</h2>
+        </div>
+        {{ with $viewAllUrl }}
+            <a
+                class="home-section__view-all"
+                href="{{ . }}"
+                data-localized-label
+                data-label-en="{{ $viewAllTextEn }} →"
+                data-label-zh="{{ $viewAllText }} →"
+            >{{ $viewAllText }} →</a>
+        {{ end }}
+    </header>
+
+    <div class="home-section__list article-list--{{ $variant }}">
+        {{ range $pages }}
+            {{ partial (printf "article-list/%s.html" $variant) . }}
+        {{ else }}
+            <p class="home-section__empty">{{ $emptyText }}</p>
+        {{ end }}
+    </div>
 </section>

@@ -1,0 +1,59 @@
+{{- $type := .Type -}}
+{{- $variant := "reflection" -}}
+{{- if eq $type "reading" -}}
+    {{- $variant = "reading" -}}
+{{- else if eq $type "weeks" -}}
+    {{- $variant = "week" -}}
+{{- end -}}
+
+{{- $body := .Params.summary -}}
+{{- if not $body -}}
+    {{- $body = .Summary -}}
+{{- end -}}
+
+{{- $icon := "" -}}
+{{- $labelEn := "" -}}
+{{- $labelZh := "" -}}
+{{- if eq $variant "reading" -}}
+    {{- $icon = "📖" -}}
+    {{- $sourceUrl := .Params.source -}}
+    {{- with $sourceUrl -}}
+        {{- $u := urls.Parse . -}}
+        {{- $domain := strings.TrimPrefix "www." $u.Host -}}
+        {{- $labelEn = $domain -}}
+        {{- $labelZh = $domain -}}
+    {{- end -}}
+    {{- if not $labelEn -}}
+        {{- $labelEn = "Reading" -}}
+        {{- $labelZh = "阅读摘记" -}}
+    {{- end -}}
+{{- else if eq $variant "reflection" -}}
+    {{- $icon = "💭" -}}
+    {{- $labelEn = "Reflection" -}}
+    {{- $labelZh = "思考" -}}
+{{- else if eq $variant "week" -}}
+    {{- $icon = "📅" -}}
+    {{- $labelEn = .Date.Format "2006-01-02" -}}
+    {{- $labelZh = .Date.Format "2006-01-02" -}}
+{{- end -}}
+
+<article class="article-card article-card--{{ $variant }}">
+    <div class="article-card__eyebrow">
+        <span class="article-card__eyebrow-icon" aria-hidden="true">{{ $icon }}</span>
+        <span data-localized-label data-label-en="{{ $labelEn }}" data-label-zh="{{ $labelZh }}">{{ $labelZh }}</span>
+    </div>
+    <h3 class="article-card__title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+    {{ with $body }}
+        <p class="article-card__body">{{ . | plainify }}</p>
+    {{ end }}
+    <div class="article-card__meta">
+        <time class="article-card__meta-item" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "2006-01-02" }}
+        </time>
+        {{ if and .Site.Params.article.readingTime .ReadingTime }}
+            <span class="article-card__meta-item">{{ .ReadingTime }} min</span>
+        {{ end }}
+    </div>
+</article>

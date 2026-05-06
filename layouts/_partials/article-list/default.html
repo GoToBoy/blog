@@ -1,0 +1,11 @@
+{{- /* Variant dispatcher — picks card variant by section type. */ -}}
+{{- $type := .Type -}}
+{{- if eq $type "reading" -}}
+    {{ partial "article-list/reading.html" . }}
+{{- else if eq $type "reflections" -}}
+    {{ partial "article-list/reflection.html" . }}
+{{- else if eq $type "weeks" -}}
+    {{ partial "article-list/week.html" . }}
+{{- else -}}
+    {{ partial "article-list/reflection.html" . }}
+{{- end -}}

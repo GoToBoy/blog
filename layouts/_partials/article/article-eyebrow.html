@@ -1,0 +1,25 @@
+{{- $type := .Type -}}
+{{- $icon := "" -}}
+{{- $label := "" -}}
+{{- $labelEn := "" -}}
+
+{{- if eq $type "reading" -}}
+    {{- $icon = "📖" -}}
+    {{- $label = "阅读摘记" -}}
+    {{- $labelEn = "READING" -}}
+{{- else if eq $type "reflections" -}}
+    {{- $icon = "💭" -}}
+    {{- $label = "思考随笔" -}}
+    {{- $labelEn = "REFLECTION" -}}
+{{- else if eq $type "weeks" -}}
+    {{- $icon = "📅" -}}
+    {{- $label = .Date.Format "2006-01-02" -}}
+    {{- $labelEn = $label -}}
+{{- end -}}
+
+{{- with $label -}}
+<div class="article-eyebrow">
+    <span class="article-eyebrow__icon" aria-hidden="true">{{ $icon }}</span>
+    <span data-localized-label data-label-en="{{ $labelEn }}" data-label-zh="{{ $label }}">{{ $label }}</span>
+</div>
+{{- end -}}

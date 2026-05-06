@@ -1,0 +1,40 @@
+// Git metadata
+.git
+.git/**
+
+// Hugo generated output
+public
+public/**
+resources/_gen
+resources/_gen/**
+.hugo_build.lock
+
+// Local/private content
+content/drafts
+content/drafts/**
+content/private
+content/private/**
+
+// Obsidian local state and installed plugin bundles
+!.obsidian
+!.obsidian/plugins
+!.obsidian/plugins/quickadd
+!.obsidian/plugins/quickadd/data.json
+.obsidian/*
+.obsidian/plugins/*
+.obsidian/plugins/quickadd/*
+
+// Superpowers local runtime artifacts
+.superpowers
+.superpowers/**
+
+// Generated local editor config
+assets/jsconfig.json
+
+// OS/editor/temp files
+(?d).DS_Store
+*.swp
+*.swo
+*.log
+.vscode
+.vscode/**

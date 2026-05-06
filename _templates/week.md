@@ -1,9 +1,10 @@
 ---
 title: "周记 {{DATE:WW}}, {{DATE:GGGG}}"
 date: {{DATE:YYYY-MM-DD}}
-draft: true
+draft: false
 tags: ["weekly"]
 summary: ""
 ---
 
-> 兼容旧周记，仅保留历史使用。
+本周片段。
+

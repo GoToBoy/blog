@@ -1,17 +1,51 @@
 {{ define "main" }}
-    {{- $homepage := .Site.Params.homepage -}}
-    {{- $homeTypes := slice "reading" "reflections" -}}
-    {{- $pages := where .Site.RegularPages "Type" "in" $homeTypes -}}
-    {{- $pages = where $pages "Draft" "!=" true -}}
-    {{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
-    {{- $recentLimit := $homepage.recentLimit | default 6 -}}
-    {{- $recentPages := first $recentLimit $pages -}}
+    {{- $sectionLimit := 3 -}}
+
+    {{- $allPages := where .Site.RegularPages "Draft" "!=" true -}}
+    {{- $allPages = partial "helper/pages-sort.html" (dict "Pages" $allPages "Context" .) -}}
+
+    {{- $reading := where $allPages "Type" "reading" -}}
+    {{- $reflection := where $allPages "Type" "reflections" -}}
+    {{- $weeks := where $allPages "Type" "weeks" -}}
+
+    {{- $readingSection := .Site.GetPage "/reading" -}}
+    {{- $reflectionSection := .Site.GetPage "/reflections" -}}
+    {{- $weeksSection := .Site.GetPage "/weeks" -}}
 
     {{ partial "home/section-list.html" (dict
-        "title" ""
-        "pages" $recentPages
-        "limit" $recentLimit
-        "emptyText" ($homepage.recentEmptyText | default "最近还没有新的更新。")
+        "variant" "reading"
+        "icon" "📖"
+        "title" "最近在读"
+        "titleEn" "Recent Reading"
+        "viewAllUrl" (cond (ne $readingSection nil) $readingSection.RelPermalink "")
+        "viewAllText" "查看全部"
+        "viewAllTextEn" "View all"
+        "pages" (first $sectionLimit $reading)
+        "emptyText" "还没有阅读笔记。"
+    ) }}
+
+    {{ partial "home/section-list.html" (dict
+        "variant" "reflection"
+        "icon" "💭"
+        "title" "最近在想"
+        "titleEn" "Recent Reflections"
+        "viewAllUrl" (cond (ne $reflectionSection nil) $reflectionSection.RelPermalink "")
+        "viewAllText" "查看全部"
+        "viewAllTextEn" "View all"
+        "pages" (first $sectionLimit $reflection)
+        "emptyText" "还没有思考随笔。"
+    ) }}
+
+    {{ partial "home/section-list.html" (dict
+        "variant" "week"
+        "icon" "📅"
+        "title" "最近周记"
+        "titleEn" "Recent Weeks"
+        "viewAllUrl" (cond (ne $weeksSection nil) $weeksSection.RelPermalink "")
+        "viewAllText" "查看全部"
+        "viewAllTextEn" "View all"
+        "pages" (first $sectionLimit $weeks)
+        "emptyText" "还没有周记。"
     ) }}
 
     {{- partial "footer/footer" . -}}

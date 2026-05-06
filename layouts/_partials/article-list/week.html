@@ -1,0 +1,20 @@
+{{- $body := .Params.summary -}}
+{{- if not $body -}}
+    {{- $body = .Summary -}}
+{{- end -}}
+
+{{- /* Compute ISO week number — Hugo's time.Format lacks ISO week, so derive */ -}}
+{{- $dateLabel := .Date.Format "2006-01-02" -}}
+
+<article class="article-card article-card--week">
+    <div class="article-card__eyebrow">
+        <span class="article-card__eyebrow-icon" aria-hidden="true">📅</span>
+        <span>{{ $dateLabel }}</span>
+    </div>
+    <h3 class="article-card__title">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+    {{ with $body }}
+        <p class="article-card__body">{{ . | plainify }}</p>
+    {{ end }}
+</article>

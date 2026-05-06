@@ -59,6 +59,36 @@
         "mode": "default",
         "focus": true
       }
+    },
+    {
+      "id": "f4c8d2a1-7b9e-4d3a-95c2-1b6e7e2c4d83",
+      "name": "周记",
+      "type": "Template",
+      "command": false,
+      "appendLink": false,
+      "templatePath": "_templates/week.md",
+      "fileNameFormat": {
+        "enabled": true,
+        "format": "index"
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "content/weeks/{{DATE:GGGG}}-W{{DATE:WW}}"
+        ],
+        "chooseWhenCreatingNote": false,
+        "chooseFromSubfolders": false,
+        "createInSameFolderAsActiveFile": false
+      },
+      "setFileExistsBehavior": true,
+      "fileExistsMode": "Increment the file name",
+      "openFile": true,
+      "fileOpening": {
+        "location": "tab",
+        "direction": "vertical",
+        "mode": "default",
+        "focus": true
+      }
     }
   ],
   "inputPrompt": "single-line",

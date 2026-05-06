@@ -1,0 +1,36 @@
+{{- $context := .Context -}}
+{{- $limit := default 24 .Params.limit -}}
+{{- $tagsPage := $context.Site.GetPage "/tags" -}}
+{{- $tagTaxonomy := $context.Site.Taxonomies.tags -}}
+
+{{- if and $tagTaxonomy (gt (len $tagTaxonomy) 0) -}}
+    <section class="widget widget--tagcloud">
+        <h2 class="widget-title section-title">
+            {{ if $tagsPage }}
+                <a href="{{ $tagsPage.RelPermalink }}">{{ T "widget.tagCloud.title" | default "Tags" }}</a>
+            {{ else }}
+                {{ T "widget.tagCloud.title" | default "Tags" }}
+            {{ end }}
+        </h2>
+
+        {{- $sorted := $tagTaxonomy.ByCount -}}
+        {{- $top := first $limit $sorted -}}
+        {{- $maxCount := 1 -}}
+        {{- range $top -}}
+            {{- if gt .Count $maxCount -}}{{- $maxCount = .Count -}}{{- end -}}
+        {{- end -}}
+
+        <div class="tagcloud-tags">
+            {{- range $top -}}
+                {{- $weight := "sm" -}}
+                {{- $ratio := div (mul .Count 1.0) $maxCount -}}
+                {{- if ge $ratio 0.66 -}}{{- $weight = "lg" -}}
+                {{- else if ge $ratio 0.33 -}}{{- $weight = "md" -}}{{- end -}}
+                <a href="{{ .Page.RelPermalink }}" data-weight="{{ $weight }}">
+                    <span class="tagcloud-name">{{ .Page.Title }}</span>
+                    <span class="tagcloud-count">{{ .Count }}</span>
+                </a>
+            {{- end -}}
+        </div>
+    </section>
+{{- end -}}

@@ -1,0 +1,63 @@
+{{- $type := .Type -}}
+{{- $variant := "reflection" -}}
+{{- if eq $type "reading" -}}
+    {{- $variant = "reading" -}}
+{{- else if eq $type "weeks" -}}
+    {{- $variant = "week" -}}
+{{- end -}}
+
+<article class="main-article article-page--{{ $variant }}">
+    {{ if eq $variant "reading" }}
+        {{ partial "article/source-block.html" . }}
+    {{ end }}
+
+    <header class="article-header">
+        {{ partial "article/article-eyebrow.html" . }}
+
+        <h1 class="article-title">{{ .Title }}</h1>
+
+        <div class="article-meta">
+            <span class="meta-item">
+                {{ partial "helper/icon" "date" }}
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Monday, January 2, 2006" }}</time>
+            </span>
+            {{ if and .Site.Params.article.readingTime .ReadingTime }}
+                <span class="meta-item">
+                    {{ partial "helper/icon" "clock" }}
+                    <span>{{ .ReadingTime }} {{ T "article.readingTime" (dict "Count" .ReadingTime) | default (printf "%d minutes read" .ReadingTime) }}</span>
+                </span>
+            {{ end }}
+            {{ with .Params.categories }}
+                <span class="meta-item article-category">
+                    {{ range . }}
+                        <a href="{{ (printf "/categories/%s" (urlize .)) | relURL }}">{{ . }}</a>
+                    {{ end }}
+                </span>
+            {{ end }}
+        </div>
+    </header>
+
+    {{ if and (eq $variant "reading") .Params.summary }}
+        <blockquote class="article-summary">{{ .Params.summary | markdownify }}</blockquote>
+    {{ end }}
+
+    <section class="article-content">
+        {{ .Content }}
+    </section>
+
+    <footer class="article-footer">
+        {{ with .Params.tags }}
+            <div class="article-tags">
+                {{ range . }}
+                    <a href="{{ (printf "/tags/%s" (urlize .)) | relURL }}">#{{ . }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+
+        {{ if and .Site.Params.article.license.enabled }}
+            <div class="article-license">
+                {{ .Params.license | default .Site.Params.article.license.default | markdownify }}
+            </div>
+        {{ end }}
+    </footer>
+</article>

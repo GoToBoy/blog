@@ -1,5 +1,5 @@
 # Pages placed under these sections will be shown on homepage and archive page.
-mainSections = ["reading", "reflections"]
+mainSections = ["reading", "reflections", "weeks"]
 # Output page's full content in RSS.
 rssFullContent = true
 favicon        = "img/favicon.png"
@@ -39,6 +39,7 @@ SortBy              = "default"
     homepage = [
         { type = "search" },
         { type = "archives", params = { limit = 5 } },
+        { type = "tagcloud", params = { limit = 24 } },
     ]
     page = [{ type = "toc" }]
 

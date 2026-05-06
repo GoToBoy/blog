@@ -3,6 +3,11 @@
         template-search
     {{ else }}
         article-page
+        {{- $type := .Type -}}
+        {{- if eq $type "reading" }} article-page--reading{{ end -}}
+        {{- if eq $type "reflections" }} article-page--reflection{{ end -}}
+        {{- if eq $type "weeks" }} article-page--week{{ end -}}
+
         {{- $HasWidgetNotTOC := false -}}
         {{- $TOCWidgetEnabled := false -}}
         {{- range .Site.Params.widgets.page -}}
